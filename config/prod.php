@@ -1,12 +1,6 @@
 <?php
 
-$app['db.options'] = [
-  "driver" => "pdo_mysql",
-  "user" => "mledwon",
-  "password" => "",
-  "dbname" => "pilka",
-  "host" => "localhost"
-];
+require __DIR__.'/parameters.php';
 
 $app['migrations.config'] = [
     'migrations.directory' => __DIR__ . '/../migrations',

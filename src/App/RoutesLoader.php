@@ -3,6 +3,7 @@
 namespace App;
 
 use Silex\Application;
+
 class RoutesLoader
 {
     private $app;
@@ -14,15 +15,17 @@ class RoutesLoader
     
     private function instantiateControllers()
     {
-        $this->app['notes.controller'] = function() {
-            return new Controllers\NotesController($this->app['notes.service']);
+        $this->app['match.controller'] = function() {
+            return new Controllers\MatchController();
         };
     }
     
     public function bindRoutesToControllers()
     {
-        $api = $this->app["controllers_factory"];
-        $api->get('/notes', "notes.controller:getAll");
-        $this->app->mount('dupa');
+        $match = $this->app["controllers_factory"];
+        
+        $match->get('/', "match.controller:list");
+        
+        $this->app->mount('/', $match);
     }
 }
